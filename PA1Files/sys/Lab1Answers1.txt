@@ -1,0 +1,85 @@
+ADDITIONAL QUESTIONS
+SUBMITTED BY ASHWATH SRIRAM
+STUDENT ID: 200015269
+UNITY ID: ASRIRAM3
+
+QUESTION 1:
+What are the advantages and disadvantages of each of the two scheduling policies? 
+Also, give the advantages and disadvantages of the round robin scheduling policy originally implemented in Xinu.
+
+SOLUTION
+
+Xinu scheduling
+
+Advantages:
+
+1.) Simple to understand and implement
+2.) Keeps the cpu busy at almost all the time
+
+Disadvantages:
+
+1.) It can lead to starvation of a lower priority process with the spawning of higher priority process in the ready queue.
+In other words, it is not fair.
+2.) It is not predictable- given a process the user does not know when it will be executed because he
+does not know about the other processes.
+
+Random Priority Based Scheduling:
+
+Advantages:
+
+1.) It is also priority based but with more fairness due to the choosing of
+a random value to choose which process to run.
+2.) It keeps CPU utilized alomst all the time
+3.) Given a process, it can predicted when it can run due to the fact that
+the scheduler chooses the process based on the arrival time.
+
+Disadvantages:
+
+1.) Relatively more complex to implement because it involves the use of 3 queues.
+2.) It takes a relatively larger response time compared to Xinu scheduling because
+the cpu needs to calculate random value to choose the apprpriate queue.
+
+
+Liux Like Scheduler:
+
+Advantages:
+
+1.) It is the most fair of the 3 algorithms.
+2.) It is predictable - as in - when given a job , the user can known when it will be executed.
+
+Disadvantages:
+
+1.) Most complex and difficult to implement of the three algorithms.
+2.) It does not have as much throughput as the others because, a lot of time is spent on calculating
+the goodness of the process before and at the end of the epoch. 
+
+
+
+QUESTION 2:
+
+Describe the way each of the schedulers affects the NULL process.
+
+
+SOLUTION:
+
+Xinu Scheduling
+
+In Xinu's default scheduling, the NULL process isthe first process in the ready queue which is pointed to by rdyhead
+It has priority 0. When processes with higher priority comes into the ready queue, they are executed first based on decreasing
+order of priority. After all are executed, the NULL process begins to run and signigifes the end of the program with the message
+'ALL User PRocess are Completed'.
+Also, when processes go to sleep or are in waiting state, then NULL process is run till those processes come back to ready state and are 
+put in the ready queue.
+
+
+Random Priority Based Scheduling:
+
+Here the NULL process is run only when there is no other runnable process in the ready queue. Till then, the NULL process is inthe ready queue and called
+when all 3 queues are empty.
+
+
+Linux Like Scheduling:
+
+In LInux Like scheduling, the NULL process is always part of the epoch. So, when all the runnable processes in the queue have completed
+their quantum, the NULL process will run and if some processes comes back from a waiting state to the ready queue, it will wait until the NULL process has completed its 
+quantum before sending it back to the READY Queue.
